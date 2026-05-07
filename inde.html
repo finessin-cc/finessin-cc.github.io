@@ -84,7 +84,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:
 </head>
 <body>
 <div class="container">
-
+ 
   <div class="header">
     <div class="header-top">
       <span><span class="status-dot"></span>SYSTEM ONLINE // ALL NODES ACTIVE</span>
@@ -119,7 +119,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:
       </div>
     </div>
   </div>
-
+ 
   <div class="nav">
     <button class="nav-btn active" onclick="showSection('about',this,'whoami')">
       <span class="num">[01]</span>whoami
@@ -137,9 +137,9 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:
       <span class="num">[05]</span>contact
     </button>
   </div>
-
+ 
   <div class="content-box" data-label="OUTPUT">
-
+ 
     <!-- ABOUT -->
     <div class="section active" id="sec-about">
       <div class="section-heading">// OPERATOR PROFILE //</div>
@@ -170,7 +170,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:
         They're quiet. They use what's already there."</span>
       </div>
     </div>
-
+ 
     <!-- SKILLS -->
     <div class="section" id="sec-skills">
       <div class="section-heading">// CAPABILITIES MATRIX //</div>
@@ -217,7 +217,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:
         </div>
       </div>
     </div>
-
+ 
     <!-- LABS -->
     <div class="section" id="sec-labs">
       <div class="section-heading">// COMPLETED OPERATIONS //</div>
@@ -230,7 +230,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:
       </div>
       <div style="margin-top:16px;font-size:11px;color:var(--green-darker);letter-spacing:1px;">CLICK ANY OPERATION TO VIEW FULL REPORT</div>
     </div>
-
+ 
     <!-- TOOLS -->
     <div class="section" id="sec-tools">
       <div class="section-heading">// CUSTOM BUILT TOOLS //</div>
@@ -250,7 +250,7 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:
         <div class="skill-tags"><span class="tag">Python</span><span class="tag">REST API</span><span class="tag">requests</span><span class="tag">NVD</span></div>
       </div>
     </div>
-
+ 
     <!-- CONTACT -->
     <div class="section" id="sec-contact">
       <div class="section-heading">// ESTABLISH CONNECTION //</div>
@@ -284,19 +284,19 @@ body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:
         <span style="color:var(--green-darker);font-size:11px;">RESPOND VIA LINKEDIN OR EMAIL</span>
       </div>
     </div>
-
+ 
   </div>
-
+ 
   <div class="prompt-bar">
     <span class="prompt-sym">MOTHER:~$</span>
     <span style="font-size:12px;color:var(--green-dark);" id="prompt-display">whoami</span>
     <span class="cursor-blink"></span>
   </div>
-
+ 
   <div class="footer">MOTHER TERMINAL v2.4.1 // FINESSIN-CC // 2026 // ALL SYSTEMS NOMINAL</div>
-
+ 
 </div>
-
+ 
 <script>
 function updateClock(){
   const now=new Date();
@@ -304,7 +304,7 @@ function updateClock(){
 }
 setInterval(updateClock,1000);
 updateClock();
-
+ 
 function showSection(key,btn,cmd){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
@@ -312,7 +312,7 @@ function showSection(key,btn,cmd){
   btn.classList.add('active');
   typePrompt(cmd);
 }
-
+ 
 function typePrompt(text){
   const el=document.getElementById('prompt-display');
   el.textContent='';
@@ -323,7 +323,7 @@ function typePrompt(text){
     if(i>=text.length)clearInterval(iv);
   },60);
 }
-
+ 
 async function loadWriteups(){
   try{
     const res=await fetch(
@@ -334,20 +334,20 @@ async function loadWriteups(){
     const mdFiles=files
       .filter(f=>f.name.endsWith('.md')&&f.name!=='README.md')
       .sort((a,b)=>a.name.localeCompare(b.name));
-
+ 
     const count=mdFiles.length;
     document.getElementById('writeup-count').textContent=count+' WRITEUPS';
     document.getElementById('header-count').textContent=count;
-
+ 
     const list=document.getElementById('writeups-list');
     list.innerHTML='';
-
+ 
     mdFiles.forEach((file,i)=>{
       const name=file.name
         .replace('.md','')
         .replace(/-/g,' ')
         .toUpperCase();
-
+ 
       const item=document.createElement('div');
       item.className='writeup-item';
       item.innerHTML=`
@@ -358,7 +358,7 @@ async function loadWriteups(){
       item.addEventListener('click',()=>window.open(file.html_url,'_blank'));
       list.appendChild(item);
     });
-
+ 
   }catch(e){
     document.getElementById('writeups-list').innerHTML=
       '<div style="color:var(--green-darker);font-size:12px;padding:20px 0;text-align:center;">// CONNECTION ERROR — CHECK BACK LATER</div>';
@@ -366,7 +366,7 @@ async function loadWriteups(){
     document.getElementById('header-count').textContent='?';
   }
 }
-
+ 
 loadWriteups();
 </script>
 </body>
